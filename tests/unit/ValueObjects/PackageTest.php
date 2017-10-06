@@ -1,9 +1,10 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher;
+namespace Vanbrabantf\NpmStatFetcher\tests\unit\ValueObjects;
 
 use PHPUnit\Framework\TestCase;
 use Vanbrabantf\NpmStatFetcher\Exceptions\EmptyValueException;
+use Vanbrabantf\NpmStatFetcher\ValueObjects\Package;
 
 class PackageTest extends TestCase
 {
