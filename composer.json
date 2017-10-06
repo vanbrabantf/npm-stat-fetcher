@@ -3,7 +3,7 @@
     "description": "A small package that returns some common stats about npm packages",
     "type": "library",
     "require": {
-        "php": "^7.1",
+        "php": "^7.0",
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {

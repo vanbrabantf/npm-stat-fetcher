@@ -1,6 +1,10 @@
 <?php
 
-class initialTest extends \PHPUnit\Framework\TestCase
+namespace Vanbrabantf\NpmStatFetcher\Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+
+class initialTest extends TestCase
 {
     /**
      * @test
