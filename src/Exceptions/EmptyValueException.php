@@ -2,7 +2,9 @@
 
 namespace Vanbrabantf\NpmStatFetcher\Exceptions;
 
-class EmptyValueException extends \Exception
+use Exception;
+
+class EmptyValueException extends Exception
 {
 
 }
