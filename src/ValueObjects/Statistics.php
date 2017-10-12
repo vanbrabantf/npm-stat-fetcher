@@ -24,7 +24,7 @@ class Statistics
      */
     public function getPackageName(): string
     {
-        return (string)$this->package;
+        return (string) $this->package;
     }
 
     /**

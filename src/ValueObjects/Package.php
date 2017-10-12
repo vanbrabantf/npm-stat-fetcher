@@ -18,7 +18,7 @@ class Package
     public function __construct(string $name)
     {
         if(empty($name)) {
-           throw new EmptyValueException('Package name can\'t be empty');
+            throw new EmptyValueException('Package name can\'t be empty');
         }
 
         $this->name = $name;
