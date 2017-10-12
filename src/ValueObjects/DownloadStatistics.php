@@ -26,7 +26,6 @@ class DownloadStatistics extends Statistics
      * @param int $downloads
      * @param DateTimeImmutable $startDate
      * @param DateTimeImmutable $endDate
-
      */
     public function __construct(
         Package $package,
@@ -45,7 +44,7 @@ class DownloadStatistics extends Statistics
      */
     public function __toString()
     {
-        return (string)$this->downloads;
+        return (string) $this->downloads;
     }
 
     /**

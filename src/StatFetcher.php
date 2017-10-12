@@ -36,7 +36,7 @@ class StatFetcher
     public function getDownloadsLastDay()
     {
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/last-day/' . $this->package
+            '/downloads/point/last-day/'.$this->package
         );
 
         $resourceArray = json_decode($resource);

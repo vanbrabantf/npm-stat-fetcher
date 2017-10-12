@@ -22,7 +22,7 @@ class NpmRegistryRepository
      */
     public function getResourceByPath(string $path): string
     {
-        $resource =  $this->client->get($path);
+        $resource = $this->client->get($path);
 
         return $resource->getBody()->getContents();
     }
