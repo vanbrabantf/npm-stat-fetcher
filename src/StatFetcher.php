@@ -2,7 +2,10 @@
 
 namespace Vanbrabantf\NpmStatFetcher;
 
+use Cake\Chronos\Chronos;
+use DateTimeInterface;
 use GuzzleHttp\Client;
+use Vanbrabantf\NpmStatFetcher\Helpers\DateChecker;
 use Vanbrabantf\NpmStatFetcher\Repositories\NpmRegistryRepository;
 use Vanbrabantf\NpmStatFetcher\ValueObjects\DownloadStatistics;
 use Vanbrabantf\NpmStatFetcher\ValueObjects\Package;
@@ -80,6 +83,40 @@ class StatFetcher
     {
         $resource = $this->repository->getResourceByPath(
             '/downloads/point/last-year/' . $this->package
+        );
+
+        return DownloadStatistics::fromJson($this->package, $resource);
+    }
+
+    /**
+     * @return DownloadStatistics
+     */
+    public function getDownloads()
+    {
+        $start = new Chronos('1999-01-01');
+        $now = new Chronos();
+
+        DateChecker::validateDateRange($start, $now);
+
+        $resource = $this->repository->getResourceByPath(
+            '/downloads/point/' . $start->format('Y-m-d') . ':' . $now->format('Y-m-d') . '/' . $this->package
+        );
+
+        return DownloadStatistics::fromJson($this->package, $resource);
+    }
+
+    /**
+     * @param DateTimeInterface $start
+     * @param DateTimeInterface $end
+     *
+     * @return DownloadStatistics
+     */
+    public function getDownloadsBetweenDates(DateTimeInterface $start, DateTimeInterface $end)
+    {
+        DateChecker::validateDateRange($start, $end);
+
+        $resource = $this->repository->getResourceByPath(
+            '/downloads/point/' . $start->format('Y-m-d') . ':' . $end->format('Y-m-d') . '/' . $this->package
         );
 
         return DownloadStatistics::fromJson($this->package, $resource);
