@@ -4,7 +4,7 @@ namespace Vanbrabantf\NpmStatFetcher;
 
 use Cake\Chronos\Chronos;
 use DateTimeInterface;
-use GuzzleHttp\Client;
+use Vanbrabantf\NpmStatFetcher\Builders\ClientBuilder;
 use Vanbrabantf\NpmStatFetcher\Helpers\DateChecker;
 use Vanbrabantf\NpmStatFetcher\Repositories\NpmRegistryRepository;
 use Vanbrabantf\NpmStatFetcher\ValueObjects\DownloadStatistics;
@@ -34,7 +34,7 @@ class StatFetcher
         $this->package = $package;
 
         if (is_null($repository)) {
-            $this->repository = new NpmRegistryRepository(new Client());
+            $this->repository = new NpmRegistryRepository(ClientBuilder::Build());
         } else {
             $this->repository = $repository;
         }
