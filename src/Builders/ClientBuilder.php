@@ -9,7 +9,7 @@ class ClientBuilder
     /**
      * @return Client
      */
-    public static function Build()
+    public static function build()
     {
         return new Client([
             'base_uri' => 'https://api.npmjs.org/',
