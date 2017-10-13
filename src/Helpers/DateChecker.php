@@ -2,7 +2,6 @@
 
 namespace Vanbrabantf\NpmStatFetcher\Helpers;
 
-
 use Cake\Chronos\Chronos;
 use DateTimeInterface;
 use Vanbrabantf\NpmStatFetcher\Exceptions\DateException;
