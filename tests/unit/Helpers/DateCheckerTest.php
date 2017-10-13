@@ -12,7 +12,7 @@ class DateCheckerTest extends TestCase
     /**
      * @test
      */
-    public function ItErrorsOnStartDateInTheFuture()
+    public function itErrorsOnStartDateInTheFuture()
     {
         $this->expectException(DateException::class);
 
@@ -25,7 +25,7 @@ class DateCheckerTest extends TestCase
     /**
      * @test
      */
-    public function ItErrorsOnEndDateInTheFuture()
+    public function itErrorsOnEndDateInTheFuture()
     {
         $this->expectException(DateException::class);
 
@@ -38,7 +38,7 @@ class DateCheckerTest extends TestCase
     /**
      * @test
      */
-    public function ItErrorsOnSmallerEndDateThanStartdateInTheFuture()
+    public function itErrorsOnSmallerEndDateThanStartdateInTheFuture()
     {
         $this->expectException(DateException::class);
 
@@ -51,7 +51,7 @@ class DateCheckerTest extends TestCase
     /**
      * @test
      */
-    public function ItDoesntErrorOnValidData()
+    public function itDoesntErrorOnValidData()
     {
         $start = new Chronos('-1 month');
         $end = new Chronos('-14 days');
