@@ -35,6 +35,7 @@ class DownloadStatistics extends Statistics implements StatisticInterface
         DateTimeImmutable $endDate
     ) {
         parent::__construct($package);
+
         $this->downloads = $downloads;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -47,7 +48,6 @@ class DownloadStatistics extends Statistics implements StatisticInterface
     {
         return (string) $this->downloads;
     }
-
 
     /**
      * @param Package $package
