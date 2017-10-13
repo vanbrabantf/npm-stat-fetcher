@@ -3,7 +3,7 @@
 
 ## Purpose
 
-A simple package that fetches statistics from NPM.
+A simple package written in PHP that fetches statistics from NPM.
 It's mostly a wrapper around the NPM-API.
 
 ## Installation
