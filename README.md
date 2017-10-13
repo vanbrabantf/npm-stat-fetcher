@@ -11,7 +11,7 @@ It's mostly a wrapper around the NPM-API.
 Installation can be done easily through composer.
 
 ```
-composer require vanbrabantf\npm-stat-fetcher
+composer require vanbrabantf/npm-stat-fetcher
 ```
 
 ## Usage
