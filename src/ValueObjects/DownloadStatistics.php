@@ -2,9 +2,10 @@
 
 namespace Vanbrabantf\NpmStatFetcher\ValueObjects;
 
+use Cake\Chronos\Chronos;
 use DateTimeImmutable;
 
-class DownloadStatistics extends Statistics
+class DownloadStatistics extends Statistics implements StatisticInterface
 {
     /**
      * @var int
@@ -45,6 +46,24 @@ class DownloadStatistics extends Statistics
     public function __toString()
     {
         return (string) $this->downloads;
+    }
+
+
+    /**
+     * @param Package $package
+     * @param string $resource
+     * @return DownloadStatistics
+     */
+    public static function fromJson(Package $package, string $resource): DownloadStatistics
+    {
+        $resourceArray = json_decode($resource);
+
+        return new self(
+            $package,
+            $resourceArray->downloads,
+            new Chronos($resourceArray->start),
+            new Chronos($resourceArray->end)
+        );
     }
 
     /**
