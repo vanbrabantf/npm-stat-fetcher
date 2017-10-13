@@ -2,8 +2,7 @@
 
 namespace Vanbrabantf\NpmStatFetcher;
 
-
-use Cake\Chronos\Chronos;
+use GuzzleHttp\Client;
 use Vanbrabantf\NpmStatFetcher\Repositories\NpmRegistryRepository;
 use Vanbrabantf\NpmStatFetcher\ValueObjects\DownloadStatistics;
 use Vanbrabantf\NpmStatFetcher\ValueObjects\Package;
@@ -24,10 +23,18 @@ class StatFetcher
      * @param Package $package
      * @param NpmRegistryRepository $repository
      */
-    public function __construct(Package $package, NpmRegistryRepository $repository)
+    public function __construct(
+        Package $package,
+        $repository = null
+    )
     {
         $this->package = $package;
-        $this->repository = $repository;
+
+        if (is_null($repository)) {
+            $this->respository = new NpmRegistryRepository(new Client());
+        } else {
+            $this->repository = $repository;
+        }
     }
 
     /**
@@ -36,16 +43,9 @@ class StatFetcher
     public function getDownloadsLastDay()
     {
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/last-day/'.$this->package
+            '/downloads/point/last-day/' . $this->package
         );
 
-        $resourceArray = json_decode($resource);
-
-        return new DownloadStatistics(
-            $this->package,
-            $resourceArray->downloads,
-            new Chronos($resourceArray->start),
-            new Chronos($resourceArray->end)
-        );
+        return DownloadStatistics::fromJson($this->package, $resource);
     }
 }
