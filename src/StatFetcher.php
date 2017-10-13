@@ -31,7 +31,7 @@ class StatFetcher
         $this->package = $package;
 
         if (is_null($repository)) {
-            $this->respository = new NpmRegistryRepository(new Client());
+            $this->repository = new NpmRegistryRepository(new Client());
         } else {
             $this->repository = $repository;
         }
