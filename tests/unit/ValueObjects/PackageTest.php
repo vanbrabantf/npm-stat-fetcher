@@ -11,7 +11,7 @@ class PackageTest extends TestCase
     /**
      * @test
      */
-    public function iCanGetTheNameFromAPackage()
+    public function itCanGetTheNameFromAPackage()
     {
         $package = new Package('care');
 
@@ -21,7 +21,7 @@ class PackageTest extends TestCase
     /**
      * @test
      */
-    public function iCantEnterAnEmptyNamedPackage()
+    public function itCantEnterAnEmptyNamedPackage()
     {
         $this->expectException(EmptyValueException::class);
 
