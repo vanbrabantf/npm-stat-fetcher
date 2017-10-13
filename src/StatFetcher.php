@@ -48,4 +48,40 @@ class StatFetcher
 
         return DownloadStatistics::fromJson($this->package, $resource);
     }
+
+    /**
+     * @return DownloadStatistics
+     */
+    public function getDownloadsLastWeek()
+    {
+        $resource = $this->repository->getResourceByPath(
+            '/downloads/point/last-week/' . $this->package
+        );
+
+        return DownloadStatistics::fromJson($this->package, $resource);
+    }
+
+    /**
+     * @return DownloadStatistics
+     */
+    public function getDownloadsLastMonth()
+    {
+        $resource = $this->repository->getResourceByPath(
+            '/downloads/point/last-month/' . $this->package
+        );
+
+        return DownloadStatistics::fromJson($this->package, $resource);
+    }
+
+    /**
+     * @return DownloadStatistics
+     */
+    public function getDownloadsLastYear()
+    {
+        $resource = $this->repository->getResourceByPath(
+            '/downloads/point/last-year/' . $this->package
+        );
+
+        return DownloadStatistics::fromJson($this->package, $resource);
+    }
 }
