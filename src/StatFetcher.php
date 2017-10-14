@@ -34,10 +34,10 @@ class StatFetcher
         $this->package = $package;
 
         if (is_null($repository)) {
-            $this->repository = new NpmRegistryRepository(ClientBuilder::Build());
-        } else {
-            $this->repository = $repository;
+            $repository = new NpmRegistryRepository(ClientBuilder::Build());
         }
+        
+        $this->repository = $repository;
     }
 
     /**
