@@ -8,6 +8,12 @@ use Vanbrabantf\NpmStatFetcher\Exceptions\DateException;
 
 class DateChecker
 {
+    /**
+     * @param DateTimeInterface $start
+     * @param DateTimeInterface $end
+     * @return bool
+     * @throws DateException
+     */
     public static function validateDateRange(DateTimeInterface $start, DateTimeInterface $end)
     {
         $start = new Chronos($start);

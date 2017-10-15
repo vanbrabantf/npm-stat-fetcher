@@ -52,6 +52,7 @@ class DownloadStatistics extends Statistics implements StatisticInterface
     /**
      * @param Package $package
      * @param string $resource
+     *
      * @return DownloadStatistics
      */
     public static function fromJson(Package $package, string $resource): DownloadStatistics
