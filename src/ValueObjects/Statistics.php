@@ -2,7 +2,6 @@
 
 namespace Vanbrabantf\NpmStatFetcher\ValueObjects;
 
-
 class Statistics
 {
     /**

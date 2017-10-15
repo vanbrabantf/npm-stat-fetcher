@@ -29,12 +29,11 @@ class StatFetcher
     public function __construct(
         Package $package,
         $repository = null
-    )
-    {
+    ) {
         $this->package = $package;
 
         if (is_null($repository)) {
-            $this->repository = new NpmRegistryRepository(ClientBuilder::Build());
+            $this->repository = new NpmRegistryRepository(ClientBuilder::build());
         } else {
             $this->repository = $repository;
         }

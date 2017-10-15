@@ -18,8 +18,8 @@ class DownloadStatisticsTest extends TestCase
         $downloadStatistic = new DownloadStatistics(
             $package,
             13,
-            new Chronos('1989-12-13'),
-            new Chronos('1988-11-07')
+            new Chronos('1989-12-13T00:00:00+00:00'),
+            new Chronos('1988-11-07T00:00:00+00:00')
         );
 
         $this->assertEquals('Care', $downloadStatistic->getPackageName());
@@ -37,7 +37,7 @@ class DownloadStatisticsTest extends TestCase
         $package = new Package('Care');
         $downloadStatistic = DownloadStatistics::fromJson(
             $package,
-            '{"downloads":13,"start":"1989-12-13","end":"1988-11-07","package":"react"}'
+            '{"downloads":13,"start":"1989-12-13T00:00:00+00:00","end":"1988-11-07T00:00:00+00:00","package":"react"}'
         );
 
         $this->assertEquals('Care', $downloadStatistic->getPackageName());

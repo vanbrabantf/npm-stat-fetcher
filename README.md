@@ -3,15 +3,14 @@
 
 ## Purpose
 
-A simple package written in PHP that fetches statistics from NPM.
-It's mostly a wrapper around the NPM-API.
+A simple package written in PHP that fetches statistics from NPM. It's mostly a wrapper around the NPM-API.
 
 ## Installation
 
 Installation can be done easily through composer.
 
 ```
-composer require vanbrabantf\npm-stat-fetcher
+composer require vanbrabantf/npm-stat-fetcher
 ```
 
 ## Usage
@@ -23,6 +22,7 @@ $package = new Vanbrabantf\NpmStatFetcher\ValueObjects\Package('npm');
 ```
 
 Next up we want to creat the fetcher itself with the `$package`:
+
 ```php
 $statFetcher = new Vanbrabantf\NpmStatFetcher\StatFetcher($package);
 ```

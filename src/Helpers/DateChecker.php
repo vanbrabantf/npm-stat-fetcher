@@ -2,7 +2,6 @@
 
 namespace Vanbrabantf\NpmStatFetcher\Helpers;
 
-
 use Cake\Chronos\Chronos;
 use DateTimeInterface;
 use Vanbrabantf\NpmStatFetcher\Exceptions\DateException;
@@ -14,12 +13,16 @@ class DateChecker
         $start = new Chronos($start);
         $end = new Chronos($end);
 
-        if (
-            $start->isFuture() ||
-            $end->isFuture() ||
-            $start > $end
-        ) {
-            throw new DateException('Date range is incorrect');
+        if ($start->isFuture()) {
+            throw new DateException("Start date \"{$start}\" must be in the past");
+        }
+
+        if ($end->isFuture()) {
+            throw new DateException("End date \"{$end}\" must be in the past");
+        }
+
+        if ($start > $end) {
+            throw new DateException("Start date \"{$start}\" must be smaller than end date \"{$end}\"");
         }
 
         return true;
