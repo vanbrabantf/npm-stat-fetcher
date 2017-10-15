@@ -1,10 +1,10 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\Tests\unit\ValueObjects;
+namespace Vanbrabantf\NpmStatFetcher\Tests\Statistics;
 
 use PHPUnit\Framework\TestCase;
-use Vanbrabantf\NpmStatFetcher\ValueObjects\Package;
-use Vanbrabantf\NpmStatFetcher\ValueObjects\Statistics;
+use Vanbrabantf\NpmStatFetcher\Package\Package;
+use Vanbrabantf\NpmStatFetcher\Statistics\Statistics;
 
 class StatisticsTest extends TestCase
 {

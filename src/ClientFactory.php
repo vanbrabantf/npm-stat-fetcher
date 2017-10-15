@@ -1,10 +1,10 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\Builders;
+namespace Vanbrabantf\NpmStatFetcher;
 
 use GuzzleHttp\Client;
 
-class ClientBuilder
+class ClientFactory
 {
     /**
      * @return Client

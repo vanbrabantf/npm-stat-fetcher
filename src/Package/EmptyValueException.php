@@ -1,6 +1,6 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\Exceptions;
+namespace Vanbrabantf\NpmStatFetcher\Package;
 
 use Exception;
 

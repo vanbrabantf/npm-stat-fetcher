@@ -1,14 +1,14 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\tests\unit;
+namespace Vanbrabantf\NpmStatFetcher\tests;
 
 use Cake\Chronos\Chronos;
 use PHPUnit\Framework\TestCase;
-use Vanbrabantf\NpmStatFetcher\Exceptions\DateException;
-use Vanbrabantf\NpmStatFetcher\Repositories\NpmRegistryRepository;
+use Vanbrabantf\NpmStatFetcher\Dates\DateException;
+use Vanbrabantf\NpmStatFetcher\NpmRegistryRepository;
+use Vanbrabantf\NpmStatFetcher\Package\Package;
 use Vanbrabantf\NpmStatFetcher\StatFetcher;
-use Vanbrabantf\NpmStatFetcher\ValueObjects\DownloadStatistics;
-use Vanbrabantf\NpmStatFetcher\ValueObjects\Package;
+use Vanbrabantf\NpmStatFetcher\Statistics\DownloadStatistics;
 
 class StatFetcherTest extends TestCase
 {

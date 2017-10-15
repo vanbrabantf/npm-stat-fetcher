@@ -1,8 +1,6 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\ValueObjects;
-
-use Vanbrabantf\NpmStatFetcher\Exceptions\EmptyValueException;
+namespace Vanbrabantf\NpmStatFetcher\Package;
 
 class Package
 {

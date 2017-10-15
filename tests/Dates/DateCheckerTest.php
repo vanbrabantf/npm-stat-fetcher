@@ -1,11 +1,11 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\Tests\unit\Helpers;
+namespace Vanbrabantf\NpmStatFetcher\Tests\Dates;
 
 use Cake\Chronos\Chronos;
 use PHPUnit\Framework\TestCase;
-use Vanbrabantf\NpmStatFetcher\Exceptions\DateException;
-use Vanbrabantf\NpmStatFetcher\Helpers\DateChecker;
+use Vanbrabantf\NpmStatFetcher\Dates\DateChecker;
+use Vanbrabantf\NpmStatFetcher\Dates\DateException;
 
 class DateCheckerTest extends TestCase
 {
