@@ -10,7 +10,6 @@ class Statistics
     private $package;
 
     /**
-     * Statistics constructor.
      * @param Package $package
      */
     public function __construct(Package $package)
