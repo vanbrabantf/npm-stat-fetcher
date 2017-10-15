@@ -45,7 +45,7 @@ class DownloadStatistics extends Statistics implements StatisticInterface
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->downloads;
     }
@@ -54,9 +54,9 @@ class DownloadStatistics extends Statistics implements StatisticInterface
      * @param Package $package
      * @param string $resource
      *
-     * @return DownloadStatistics
+     * @return StatisticInterface
      */
-    public static function fromJson(Package $package, string $resource): DownloadStatistics
+    public static function fromJson(Package $package, string $resource): StatisticInterface
     {
         $resourceArray = json_decode($resource);
 
@@ -79,7 +79,7 @@ class DownloadStatistics extends Statistics implements StatisticInterface
     /**
      * @return DateTimeImmutable
      */
-    public function getStartDate()
+    public function getStartDate(): DateTimeImmutable
     {
         return $this->startDate;
     }
@@ -87,7 +87,7 @@ class DownloadStatistics extends Statistics implements StatisticInterface
     /**
      * @return DateTimeImmutable
      */
-    public function getEndDate()
+    public function getEndDate(): DateTimeImmutable
     {
         return $this->endDate;
     }

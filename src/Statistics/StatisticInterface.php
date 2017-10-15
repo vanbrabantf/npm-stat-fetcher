@@ -12,5 +12,5 @@ interface StatisticInterface
      *
      * @return StatisticInterface
      */
-    public static function fromJson(Package $package, string $resource);
+    public static function fromJson(Package $package, string $resource): StatisticInterface;
 }

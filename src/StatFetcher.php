@@ -36,7 +36,7 @@ class StatFetcher
     /**
      * @return DownloadStatistics
      */
-    public function getDownloadsLastDay()
+    public function getDownloadsLastDay(): DownloadStatistics
     {
         $resource = $this->repository->getResourceByPath(
             '/downloads/point/last-day/' . $this->package
@@ -48,7 +48,7 @@ class StatFetcher
     /**
      * @return DownloadStatistics
      */
-    public function getDownloadsLastWeek()
+    public function getDownloadsLastWeek(): DownloadStatistics
     {
         $resource = $this->repository->getResourceByPath(
             '/downloads/point/last-week/' . $this->package
@@ -60,7 +60,7 @@ class StatFetcher
     /**
      * @return DownloadStatistics
      */
-    public function getDownloadsLastMonth()
+    public function getDownloadsLastMonth(): DownloadStatistics
     {
         $resource = $this->repository->getResourceByPath(
             '/downloads/point/last-month/' . $this->package
@@ -72,7 +72,7 @@ class StatFetcher
     /**
      * @return DownloadStatistics
      */
-    public function getDownloadsLastYear()
+    public function getDownloadsLastYear(): DownloadStatistics
     {
         $resource = $this->repository->getResourceByPath(
             '/downloads/point/last-year/' . $this->package
@@ -84,7 +84,7 @@ class StatFetcher
     /**
      * @return DownloadStatistics
      */
-    public function getDownloads()
+    public function getDownloads(): DownloadStatistics
     {
         $start = new Chronos('1999-01-01');
         $now = new Chronos();
@@ -104,7 +104,7 @@ class StatFetcher
      *
      * @return DownloadStatistics
      */
-    public function getDownloadsBetweenDates(DateTimeInterface $start, DateTimeInterface $end)
+    public function getDownloadsBetweenDates(DateTimeInterface $start, DateTimeInterface $end): DownloadStatistics
     {
         DateChecker::validateDateRange($start, $end);
 
