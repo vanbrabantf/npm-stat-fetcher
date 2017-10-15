@@ -19,14 +19,13 @@ class StatFetcherTest extends TestCase
     {
         $now = (new Chronos())->format('Y-m-d');
 
-        $package = new Package('Care');
         $repository = $this->createMock(NpmRegistryRepository::class);
         $repository->method('getResourceByPath')
             ->with('/downloads/point/1999-01-01:' . $now . '/Care')
             ->willReturn('{"downloads":4224631,"start":"2017-09-29","end":"2017-10-05","package":"Care"}');
 
-        $fetcher = new StatFetcher($package, $repository);
-        $downloadsStatistics = $fetcher->getDownloads();
+        $fetcher = new StatFetcher($repository);
+        $downloadsStatistics = $fetcher->getDownloads('Care');
 
         $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
@@ -43,14 +42,13 @@ class StatFetcherTest extends TestCase
         $start = new Chronos('2017-09-29');
         $end = new Chronos('2017-10-05');
 
-        $package = new Package('Care');
         $repository = $this->createMock(NpmRegistryRepository::class);
         $repository->method('getResourceByPath')
             ->with('/downloads/point/' . $start->format('Y-m-d') . ':' . $end->format('Y-m-d') . '/Care')
             ->willReturn('{"downloads":4224631,"start":"2017-09-29","end":"2017-10-05","package":"Care"}');
 
-        $fetcher = new StatFetcher($package, $repository);
-        $downloadsStatistics = $fetcher->getDownloadsBetweenDates($start, $end);
+        $fetcher = new StatFetcher($repository);
+        $downloadsStatistics = $fetcher->getDownloadsBetweenDates('Care', $start, $end);
 
         $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
@@ -69,14 +67,13 @@ class StatFetcherTest extends TestCase
         $start = new Chronos('+1 year');
         $end = new Chronos('+2 years');
 
-        $package = new Package('Care');
         $repository = $this->createMock(NpmRegistryRepository::class);
         $repository->method('getResourceByPath')
             ->with('/downloads/point/' . $start->format('Y-m-d') . ':' . $end->format('Y-m-d') . '/Care')
             ->willReturn('{"downloads":4224631,"start":"2017-09-29","end":"2017-10-05","package":"Care"}');
 
-        $fetcher = new StatFetcher($package, $repository);
-        $fetcher->getDownloadsBetweenDates($start, $end);
+        $fetcher = new StatFetcher($repository);
+        $fetcher->getDownloadsBetweenDates('Care', $start, $end);
     }
 
     /**
@@ -84,14 +81,13 @@ class StatFetcherTest extends TestCase
      */
     public function itCanGetTheDownloadsFromYesterdaysPackage()
     {
-        $package = new Package('Care');
         $repository = $this->createMock(NpmRegistryRepository::class);
         $repository->method('getResourceByPath')
             ->with('/downloads/point/last-day/Care')
             ->willReturn('{"downloads":4224631,"start":"2017-09-29","end":"2017-10-05","package":"Care"}');
 
-        $fetcher = new StatFetcher($package, $repository);
-        $downloadsStatistics = $fetcher->getDownloadsLastDay();
+        $fetcher = new StatFetcher($repository);
+        $downloadsStatistics = $fetcher->getDownloadsLastDay('Care');
 
         $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
@@ -105,14 +101,13 @@ class StatFetcherTest extends TestCase
      */
     public function itCanGetTheDownloadsFromYesterweeksPackage()
     {
-        $package = new Package('Care');
         $repository = $this->createMock(NpmRegistryRepository::class);
         $repository->method('getResourceByPath')
             ->with('/downloads/point/last-week/Care')
             ->willReturn('{"downloads":4224631,"start":"2017-09-29","end":"2017-10-05","package":"Care"}');
 
-        $fetcher = new StatFetcher($package, $repository);
-        $downloadsStatistics = $fetcher->getDownloadsLastWeek();
+        $fetcher = new StatFetcher($repository);
+        $downloadsStatistics = $fetcher->getDownloadsLastWeek('Care');
 
         $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
@@ -126,14 +121,13 @@ class StatFetcherTest extends TestCase
      */
     public function itCanGetTheDownloadsFromYestermonthsPackage()
     {
-        $package = new Package('Care');
         $repository = $this->createMock(NpmRegistryRepository::class);
         $repository->method('getResourceByPath')
             ->with('/downloads/point/last-year/Care')
             ->willReturn('{"downloads":4224631,"start":"2016-09-29","end":"2017-10-05","package":"Care"}');
 
-        $fetcher = new StatFetcher($package, $repository);
-        $downloadsStatistics = $fetcher->getDownloadsLastYear();
+        $fetcher = new StatFetcher($repository);
+        $downloadsStatistics = $fetcher->getDownloadsLastYear('Care');
 
         $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
@@ -147,14 +141,13 @@ class StatFetcherTest extends TestCase
      */
     public function itCanGetTheDownloadsFromYesteryearsPackage()
     {
-        $package = new Package('Care');
         $repository = $this->createMock(NpmRegistryRepository::class);
         $repository->method('getResourceByPath')
             ->with('/downloads/point/last-year/Care')
             ->willReturn('{"downloads":4224631,"start":"2016-09-29","end":"2017-10-05","package":"Care"}');
 
-        $fetcher = new StatFetcher($package, $repository);
-        $downloadsStatistics = $fetcher->getDownloadsLastYear();
+        $fetcher = new StatFetcher($repository);
+        $downloadsStatistics = $fetcher->getDownloadsLastYear('Care');
 
         $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
