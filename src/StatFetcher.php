@@ -4,11 +4,9 @@ namespace Vanbrabantf\NpmStatFetcher;
 
 use Cake\Chronos\Chronos;
 use DateTimeInterface;
-use Vanbrabantf\NpmStatFetcher\Builders\ClientBuilder;
-use Vanbrabantf\NpmStatFetcher\Helpers\DateChecker;
-use Vanbrabantf\NpmStatFetcher\Repositories\NpmRegistryRepository;
-use Vanbrabantf\NpmStatFetcher\ValueObjects\DownloadStatistics;
-use Vanbrabantf\NpmStatFetcher\ValueObjects\Package;
+use Vanbrabantf\NpmStatFetcher\Dates\DateChecker;
+use Vanbrabantf\NpmStatFetcher\Package\Package;
+use Vanbrabantf\NpmStatFetcher\Statistics\DownloadStatistics;
 
 class StatFetcher
 {
@@ -32,7 +30,7 @@ class StatFetcher
     ) {
         $this->package = $package;
 
-        $this->repository = $repository ?: new NpmRegistryRepository(ClientBuilder::Build());
+        $this->repository = $repository ?: new NpmRegistryRepository(ClientFactory::Build());
     }
 
     /**

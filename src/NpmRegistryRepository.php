@@ -1,6 +1,6 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\Repositories;
+namespace Vanbrabantf\NpmStatFetcher;
 
 use GuzzleHttp\Client;
 

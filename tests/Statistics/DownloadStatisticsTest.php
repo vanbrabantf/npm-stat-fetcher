@@ -1,11 +1,11 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\Tests\unit\ValueObjects;
+namespace Vanbrabantf\NpmStatFetcher\Tests\Statistics;
 
 use Cake\Chronos\Chronos;
 use PHPUnit\Framework\TestCase;
-use Vanbrabantf\NpmStatFetcher\ValueObjects\DownloadStatistics;
-use Vanbrabantf\NpmStatFetcher\ValueObjects\Package;
+use Vanbrabantf\NpmStatFetcher\Package\Package;
+use Vanbrabantf\NpmStatFetcher\Statistics\DownloadStatistics;
 
 class DownloadStatisticsTest extends TestCase
 {

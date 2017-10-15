@@ -1,6 +1,8 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\ValueObjects;
+namespace Vanbrabantf\NpmStatFetcher\Statistics;
+
+use Vanbrabantf\NpmStatFetcher\Package\Package;
 
 class Statistics
 {

@@ -1,10 +1,9 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\Helpers;
+namespace Vanbrabantf\NpmStatFetcher\Dates;
 
 use Cake\Chronos\Chronos;
 use DateTimeInterface;
-use Vanbrabantf\NpmStatFetcher\Exceptions\DateException;
 
 class DateChecker
 {

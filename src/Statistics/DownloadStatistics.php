@@ -1,9 +1,10 @@
 <?php
 
-namespace Vanbrabantf\NpmStatFetcher\ValueObjects;
+namespace Vanbrabantf\NpmStatFetcher\Statistics;
 
 use Cake\Chronos\Chronos;
 use DateTimeImmutable;
+use Vanbrabantf\NpmStatFetcher\Package\Package;
 
 class DownloadStatistics extends Statistics implements StatisticInterface
 {
