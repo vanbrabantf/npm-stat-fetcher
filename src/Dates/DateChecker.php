@@ -13,7 +13,7 @@ class DateChecker
      * @return bool
      * @throws DateException
      */
-    public static function validateDateRange(DateTimeInterface $start, DateTimeInterface $end)
+    public static function validateDateRange(DateTimeInterface $start, DateTimeInterface $end) : bool
     {
         $start = new Chronos($start);
         $end = new Chronos($end);
