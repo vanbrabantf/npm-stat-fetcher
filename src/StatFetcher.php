@@ -11,107 +11,124 @@ use Vanbrabantf\NpmStatFetcher\Statistics\DownloadStatistics;
 class StatFetcher
 {
     /**
-     * @var Package
-     */
-    private $package;
-
-    /**
      * @var NpmRegistryRepository
      */
     private $repository;
 
     /**
-     * @param Package $package
      * @param NpmRegistryRepository $repository
      */
-    public function __construct(
-        Package $package,
-        $repository = null
-    ) {
-        $this->package = $package;
-
+    public function __construct($repository = null) {
         $this->repository = $repository ?: new NpmRegistryRepository(ClientFactory::Build());
     }
 
+
     /**
+     * @param string $packageName
+     *
      * @return DownloadStatistics
      */
-    public function getDownloadsLastDay(): DownloadStatistics
+    public function getDownloadsLastDay(string $packageName): DownloadStatistics
     {
+        $package = new Package($packageName);
+
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/last-day/' . $this->package
+            '/downloads/point/last-day/' . $package
         );
 
-        return DownloadStatistics::fromJson($this->package, $resource);
+        return DownloadStatistics::fromJson($package, $resource);
     }
 
     /**
+     * @param string $packageName
+     *
      * @return DownloadStatistics
      */
-    public function getDownloadsLastWeek(): DownloadStatistics
+    public function getDownloadsLastWeek(string $packageName): DownloadStatistics
     {
+        $package = new Package($packageName);
+
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/last-week/' . $this->package
+            '/downloads/point/last-week/' . $package
         );
 
-        return DownloadStatistics::fromJson($this->package, $resource);
+        return DownloadStatistics::fromJson($package, $resource);
     }
 
     /**
+     * @param string $packageName
+     *
      * @return DownloadStatistics
      */
-    public function getDownloadsLastMonth(): DownloadStatistics
+    public function getDownloadsLastMonth(string $packageName): DownloadStatistics
     {
+        $package = new Package($packageName);
+
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/last-month/' . $this->package
+            '/downloads/point/last-month/' . $package
         );
 
-        return DownloadStatistics::fromJson($this->package, $resource);
+        return DownloadStatistics::fromJson($package, $resource);
     }
 
     /**
+     * @param string $packageName
+     *
      * @return DownloadStatistics
      */
-    public function getDownloadsLastYear(): DownloadStatistics
+    public function getDownloadsLastYear(string $packageName): DownloadStatistics
     {
+        $package = new Package($packageName);
+
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/last-year/' . $this->package
+            '/downloads/point/last-year/' . $package
         );
 
-        return DownloadStatistics::fromJson($this->package, $resource);
+        return DownloadStatistics::fromJson($package, $resource);
     }
 
     /**
+     * @param string $packageName
+     * 
      * @return DownloadStatistics
      */
-    public function getDownloads(): DownloadStatistics
+    public function getDownloads(string $packageName): DownloadStatistics
     {
+        $package = new Package($packageName);
         $start = new Chronos('1999-01-01');
         $now = new Chronos();
 
         DateChecker::validateDateRange($start, $now);
 
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/' . $start->format('Y-m-d') . ':' . $now->format('Y-m-d') . '/' . $this->package
+            '/downloads/point/' . $start->format('Y-m-d') . ':' . $now->format('Y-m-d') . '/' . $package
         );
 
-        return DownloadStatistics::fromJson($this->package, $resource);
+        return DownloadStatistics::fromJson($package, $resource);
     }
 
+
     /**
+     * @param string $packageName
      * @param DateTimeInterface $start
      * @param DateTimeInterface $end
      *
      * @return DownloadStatistics
      */
-    public function getDownloadsBetweenDates(DateTimeInterface $start, DateTimeInterface $end): DownloadStatistics
+    public function getDownloadsBetweenDates(
+        string $packageName,
+        DateTimeInterface $start,
+        DateTimeInterface $end
+    ): DownloadStatistics
     {
         DateChecker::validateDateRange($start, $end);
 
+        $package = new Package($packageName);
+
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/' . $start->format('Y-m-d') . ':' . $end->format('Y-m-d') . '/' . $this->package
+            '/downloads/point/' . $start->format('Y-m-d') . ':' . $end->format('Y-m-d') . '/' . $package
         );
 
-        return DownloadStatistics::fromJson($this->package, $resource);
+        return DownloadStatistics::fromJson($package, $resource);
     }
 }
