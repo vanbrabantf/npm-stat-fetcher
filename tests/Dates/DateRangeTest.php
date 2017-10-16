@@ -4,10 +4,10 @@ namespace Vanbrabantf\NpmStatFetcher\Tests\Dates;
 
 use Cake\Chronos\Chronos;
 use PHPUnit\Framework\TestCase;
-use Vanbrabantf\NpmStatFetcher\Dates\DateChecker;
 use Vanbrabantf\NpmStatFetcher\Dates\DateException;
+use Vanbrabantf\NpmStatFetcher\Dates\DateRange;
 
-class DateCheckerTest extends TestCase
+class DateRangeTest extends TestCase
 {
     /**
      * @test
@@ -19,7 +19,7 @@ class DateCheckerTest extends TestCase
         $start = new Chronos('+1 year');
         $end = new Chronos('+2 year');
 
-        DateChecker::validateDateRange($start, $end);
+        new DateRange($start, $end);
     }
 
     /**
@@ -32,7 +32,7 @@ class DateCheckerTest extends TestCase
         $start = new Chronos('-1 day');
         $end = new Chronos('+2 year');
 
-        DateChecker::validateDateRange($start, $end);
+        new DateRange($start, $end);
     }
 
     /**
@@ -45,7 +45,7 @@ class DateCheckerTest extends TestCase
         $start = new Chronos('+1 day');
         $end = new Chronos('-1 month');
 
-        DateChecker::validateDateRange($start, $end);
+        new DateRange($start, $end);
     }
 
     /**
@@ -56,6 +56,9 @@ class DateCheckerTest extends TestCase
         $start = new Chronos('-1 month');
         $end = new Chronos('-14 days');
 
-        $this->assertTrue(DateChecker::validateDateRange($start, $end));
+        $range = new DateRange($start, $end);
+
+        $this->assertSame($start, $range->getStartDate());
+        $this->assertSame($end, $range->getEndDate());
     }
 }
