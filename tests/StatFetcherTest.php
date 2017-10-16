@@ -5,6 +5,7 @@ namespace Vanbrabantf\NpmStatFetcher\tests;
 use Cake\Chronos\Chronos;
 use PHPUnit\Framework\TestCase;
 use Vanbrabantf\NpmStatFetcher\Dates\DateException;
+use Vanbrabantf\NpmStatFetcher\Dates\DateRange;
 use Vanbrabantf\NpmStatFetcher\NpmRegistryRepository;
 use Vanbrabantf\NpmStatFetcher\Package\Package;
 use Vanbrabantf\NpmStatFetcher\StatFetcher;
@@ -152,6 +153,31 @@ class StatFetcherTest extends TestCase
         $this->assertInstanceOf(DownloadStatistics::class, $downloadsStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
         $this->assertSame('2016-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
+        $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
+        $this->assertSame('Care', $downloadsStatistics->getPackageName());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanGetTheDownloadsFromAPackageInADateRange()
+    {
+        $range = new DateRange(
+            new Chronos('2017-09-29'),
+            new Chronos('2017-10-05')
+        );
+
+        $repository = $this->createMock(NpmRegistryRepository::class);
+        $repository->method('getResourceByPath')
+            ->with('/downloads/point/2017-09-29:2017-10-05/Care')
+            ->willReturn('{"downloads":4224631,"start":"2017-09-29","end":"2017-10-05","package":"Care"}');
+
+        $fetcher = new StatFetcher($repository);
+        $downloadsStatistics = $fetcher->getDownloadsInDateRange('Care', $range);
+
+        $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
+        $this->assertSame(4224631, $downloadsStatistics->getDownloads());
+        $this->assertSame('2017-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
         $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
         $this->assertSame('Care', $downloadsStatistics->getPackageName());
     }

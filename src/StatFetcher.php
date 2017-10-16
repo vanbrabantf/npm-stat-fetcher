@@ -5,6 +5,7 @@ namespace Vanbrabantf\NpmStatFetcher;
 use Cake\Chronos\Chronos;
 use DateTimeInterface;
 use Vanbrabantf\NpmStatFetcher\Dates\DateChecker;
+use Vanbrabantf\NpmStatFetcher\Dates\DateRange;
 use Vanbrabantf\NpmStatFetcher\Package\Package;
 use Vanbrabantf\NpmStatFetcher\Statistics\DownloadStatistics;
 
@@ -96,18 +97,15 @@ class StatFetcher
     public function getDownloads(string $packageName): DownloadStatistics
     {
         $package = new Package($packageName);
-        $start = new Chronos('1999-01-01');
-        $now = new Chronos();
-
-        DateChecker::validateDateRange($start, $now);
+        $dateRange = new DateRange(new Chronos('1999-01-01'), new Chronos());
 
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/' . $start->format('Y-m-d') . ':' . $now->format('Y-m-d') . '/' . $package
+            '/downloads/point/' . $dateRange->getStartDate()->format('Y-m-d') .
+            ':' . $dateRange->getEndDate()->format('Y-m-d') . '/' . $package
         );
 
         return DownloadStatistics::fromJson($package, $resource);
     }
-
 
     /**
      * @param string $packageName
@@ -120,14 +118,28 @@ class StatFetcher
         string $packageName,
         DateTimeInterface $start,
         DateTimeInterface $end
-    ): DownloadStatistics
-    {
-        DateChecker::validateDateRange($start, $end);
+    ): DownloadStatistics {
+        return $this->getDownloadsInDateRange(
+            $packageName,
+            new DateRange($start, $end)
+        );
+    }
 
+    /**
+     * @param string $packageName
+     * @param DateRange $dateRange
+     *
+     * @return DownloadStatistics
+     */
+    public function getDownloadsInDateRange(
+        string $packageName,
+        DateRange $dateRange
+    ): DownloadStatistics {
         $package = new Package($packageName);
 
         $resource = $this->repository->getResourceByPath(
-            '/downloads/point/' . $start->format('Y-m-d') . ':' . $end->format('Y-m-d') . '/' . $package
+            '/downloads/point/' . $dateRange->getStartDate()->format('Y-m-d') .
+            ':' . $dateRange->getEndDate()->format('Y-m-d') . '/' . $package
         );
 
         return DownloadStatistics::fromJson($package, $resource);
