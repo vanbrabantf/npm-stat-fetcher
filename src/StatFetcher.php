@@ -107,6 +107,22 @@ class StatFetcher
         return DownloadStatistics::fromJson($package, $resource);
     }
 
+    /**
+     * @param string $packageName
+     * @param DateTimeInterface $start
+     * @param DateTimeInterface $end
+     *
+     * @return DownloadStatistics
+     */
+    public function getDownloadsBetweenDates(
+        string $packageName,
+        DateTimeInterface $start,
+        DateTimeInterface $end
+    ): DownloadStatistics {
+        $dateRange = new DateRange($start, $end);
+
+        return $this->getDownloadsInDateRange($packageName, $dateRange);
+    }
 
     /**
      * @param string $packageName
@@ -114,7 +130,7 @@ class StatFetcher
      *
      * @return DownloadStatistics
      */
-    public function getDownloadsBetweenDates(
+    public function getDownloadsInDateRange(
         string $packageName,
         DateRange $dateRange
     ): DownloadStatistics {

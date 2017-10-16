@@ -40,18 +40,16 @@ class StatFetcherTest extends TestCase
      */
     public function itCanGetTheDownloadsFromAPackageBetweenTwoDates()
     {
-        $range = new DateRange(
-            new Chronos('2017-09-29'),
-            new Chronos('2017-10-05')
-        );
+        $start = new Chronos('2017-09-29');
+        $end = new Chronos('2017-10-05');
 
         $repository = $this->createMock(NpmRegistryRepository::class);
         $repository->method('getResourceByPath')
-            ->with('/downloads/point/2017-09-29:2017-10-05/Care')
+            ->with('/downloads/point/' . $start->format('Y-m-d') . ':' . $end->format('Y-m-d') . '/Care')
             ->willReturn('{"downloads":4224631,"start":"2017-09-29","end":"2017-10-05","package":"Care"}');
 
         $fetcher = new StatFetcher($repository);
-        $downloadsStatistics = $fetcher->getDownloadsBetweenDates('Care', $range);
+        $downloadsStatistics = $fetcher->getDownloadsBetweenDates('Care', $start, $end);
 
         $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
@@ -67,10 +65,8 @@ class StatFetcherTest extends TestCase
     {
         $this->expectException(DateException::class);
 
-        $range = new DateRange(
-            new Chronos('+1 year'),
-            new Chronos('+2 years')
-        );
+        $start = new Chronos('+1 year');
+        $end = new Chronos('+2 years');
 
         $repository = $this->createMock(NpmRegistryRepository::class);
         $repository->method('getResourceByPath')
@@ -78,7 +74,7 @@ class StatFetcherTest extends TestCase
             ->willReturn('{"downloads":4224631,"start":"2017-09-29","end":"2017-10-05","package":"Care"}');
 
         $fetcher = new StatFetcher($repository);
-        $fetcher->getDownloadsBetweenDates('Care', $range);
+        $fetcher->getDownloadsBetweenDates('Care', $start, $end);
     }
 
     /**
@@ -157,6 +153,31 @@ class StatFetcherTest extends TestCase
         $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
         $this->assertSame('2016-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
+        $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
+        $this->assertSame('Care', $downloadsStatistics->getPackageName());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanGetTheDownloadsFromAPackageInADateRange()
+    {
+        $range = new DateRange(
+            new Chronos('2017-09-29'),
+            new Chronos('2017-10-05')
+        );
+
+        $repository = $this->createMock(NpmRegistryRepository::class);
+        $repository->method('getResourceByPath')
+            ->with('/downloads/point/2017-09-29:2017-10-05/Care')
+            ->willReturn('{"downloads":4224631,"start":"2017-09-29","end":"2017-10-05","package":"Care"}');
+
+        $fetcher = new StatFetcher($repository);
+        $downloadsStatistics = $fetcher->getDownloadsInDateRange('Care', $range);
+
+        $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
+        $this->assertSame(4224631, $downloadsStatistics->getDownloads());
+        $this->assertSame('2017-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
         $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
         $this->assertSame('Care', $downloadsStatistics->getPackageName());
     }
