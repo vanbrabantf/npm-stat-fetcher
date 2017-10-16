@@ -22,11 +22,11 @@ class DownloadStatisticsTest extends TestCase
             new Chronos('1988-11-07T00:00:00+00:00')
         );
 
-        $this->assertEquals('Care', $downloadStatistic->getPackageName());
-        $this->assertEquals(13, $downloadStatistic->getDownloads());
-        $this->assertEquals('13', (string) $downloadStatistic);
-        $this->assertEquals('1988-11-07T00:00:00+00:00', $downloadStatistic->getEndDate()->format('c'));
-        $this->assertEquals('1989-12-13T00:00:00+00:00', $downloadStatistic->getStartDate()->format('c'));
+        $this->assertSame('Care', $downloadStatistic->getPackageName());
+        $this->assertSame(13, $downloadStatistic->getDownloads());
+        $this->assertSame('13', (string) $downloadStatistic);
+        $this->assertSame('1988-11-07T00:00:00+00:00', $downloadStatistic->getEndDate()->format('c'));
+        $this->assertSame('1989-12-13T00:00:00+00:00', $downloadStatistic->getStartDate()->format('c'));
     }
 
     /**
@@ -40,10 +40,10 @@ class DownloadStatisticsTest extends TestCase
             '{"downloads":13,"start":"1989-12-13T00:00:00+00:00","end":"1988-11-07T00:00:00+00:00","package":"react"}'
         );
 
-        $this->assertEquals('Care', $downloadStatistic->getPackageName());
-        $this->assertEquals(13, $downloadStatistic->getDownloads());
-        $this->assertEquals('13', (string) $downloadStatistic);
-        $this->assertEquals('1988-11-07T00:00:00+00:00', $downloadStatistic->getEndDate()->format('c'));
-        $this->assertEquals('1989-12-13T00:00:00+00:00', $downloadStatistic->getStartDate()->format('c'));
+        $this->assertSame('Care', $downloadStatistic->getPackageName());
+        $this->assertSame(13, $downloadStatistic->getDownloads());
+        $this->assertSame('13', (string) $downloadStatistic);
+        $this->assertSame('1988-11-07T00:00:00+00:00', $downloadStatistic->getEndDate()->format('c'));
+        $this->assertSame('1989-12-13T00:00:00+00:00', $downloadStatistic->getStartDate()->format('c'));
     }
 }
