@@ -119,9 +119,10 @@ class StatFetcher
         DateTimeInterface $start,
         DateTimeInterface $end
     ): DownloadStatistics {
-        $dateRange = new DateRange($start, $end);
-
-        return $this->getDownloadsInDateRange($packageName, $dateRange);
+        return $this->getDownloadsInDateRange(
+            $packageName,
+            new DateRange($start, $end)
+        );
     }
 
     /**
