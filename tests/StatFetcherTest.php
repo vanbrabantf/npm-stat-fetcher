@@ -27,7 +27,7 @@ class StatFetcherTest extends TestCase
         $fetcher = new StatFetcher($repository);
         $downloadsStatistics = $fetcher->getDownloads('Care');
 
-        $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
+        $this->assertInstanceOf(DownloadStatistics::class, $downloadsStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
         $this->assertSame('2017-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
         $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
@@ -50,7 +50,7 @@ class StatFetcherTest extends TestCase
         $fetcher = new StatFetcher($repository);
         $downloadsStatistics = $fetcher->getDownloadsBetweenDates('Care', $start, $end);
 
-        $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
+        $this->assertInstanceOf(DownloadStatistics::class, $downloadsStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
         $this->assertSame('2017-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
         $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
@@ -89,7 +89,7 @@ class StatFetcherTest extends TestCase
         $fetcher = new StatFetcher($repository);
         $downloadsStatistics = $fetcher->getDownloadsLastDay('Care');
 
-        $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
+        $this->assertInstanceOf(DownloadStatistics::class, $downloadsStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
         $this->assertSame('2017-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
         $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
@@ -109,7 +109,7 @@ class StatFetcherTest extends TestCase
         $fetcher = new StatFetcher($repository);
         $downloadsStatistics = $fetcher->getDownloadsLastWeek('Care');
 
-        $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
+        $this->assertInstanceOf(DownloadStatistics::class, $downloadsStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
         $this->assertSame('2017-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
         $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
@@ -129,7 +129,7 @@ class StatFetcherTest extends TestCase
         $fetcher = new StatFetcher($repository);
         $downloadsStatistics = $fetcher->getDownloadsLastYear('Care');
 
-        $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
+        $this->assertInstanceOf(DownloadStatistics::class, $downloadsStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
         $this->assertSame('2016-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
         $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
@@ -149,7 +149,7 @@ class StatFetcherTest extends TestCase
         $fetcher = new StatFetcher($repository);
         $downloadsStatistics = $fetcher->getDownloadsLastYear('Care');
 
-        $this->assertTrue($downloadsStatistics instanceof DownloadStatistics);
+        $this->assertInstanceOf(DownloadStatistics::class, $downloadsStatistics);
         $this->assertSame(4224631, $downloadsStatistics->getDownloads());
         $this->assertSame('2016-09-29', $downloadsStatistics->getStartDate()->format('Y-m-d'));
         $this->assertSame('2017-10-05', $downloadsStatistics->getEndDate()->format('Y-m-d'));
