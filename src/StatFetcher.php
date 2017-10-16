@@ -18,7 +18,8 @@ class StatFetcher
     /**
      * @param NpmRegistryRepository $repository
      */
-    public function __construct($repository = null) {
+    public function __construct(NpmRegistryRepository $repository = null)
+    {
         $this->repository = $repository ?: new NpmRegistryRepository(ClientFactory::Build());
     }
 
@@ -89,7 +90,7 @@ class StatFetcher
 
     /**
      * @param string $packageName
-     * 
+     *
      * @return DownloadStatistics
      */
     public function getDownloads(string $packageName): DownloadStatistics
