@@ -89,7 +89,7 @@ class StatFetcher
 
     /**
      * @param string $packageName
-     * 
+     *
      * @return DownloadStatistics
      */
     public function getDownloads(string $packageName): DownloadStatistics
