@@ -15,16 +15,55 @@ composer require vanbrabantf/npm-stat-fetcher
 
 ## Usage
 
-First of all you need a Package object. This is easily created from the Project Value Object:
+**tl;dr:** Usage of the package is pretty simple, just pass the name of the `npm` package you would like to get the stats off to the methods inside of the `StatFetcher` class. 
+
+
+You can import the class like this: 
 
 ```php
-$package = new Vanbrabantf\NpmStatFetcher\ValueObjects\Package('npm');
+$statFetcher = new Vanbrabantf\NpmStatFetcher\StatFetcher();
 ```
 
-Next up we want to creat the fetcher itself with the `$package`:
+### Available methods
+
+Will return the downloads of the previous day:
 
 ```php
-$statFetcher = new Vanbrabantf\NpmStatFetcher\StatFetcher($package);
+$statFetcher->getDownloadsLastDay('jquery');
 ```
 
-Finally you can fetch download statistics from the class.
+Will return the downloads of the previous week:
+
+```php
+$statFetcher->getDownloadsLastWeek('jquery');
+```
+
+Will return the downloads of the previous month:
+
+```php
+$statFetcher->getDownloadsLastMonth('jquery');
+```
+
+Will return the downloads of the previous year:
+
+```php
+$statFetcher->getDownloadsLastYear('jquery');
+```
+
+Will return the total downloads:
+
+```php
+$statFetcher->getDownloads('jquery');
+```
+
+Will return the total downloads between 2 dates:
+
+```php
+$start = new DateTime('1989-12-13');
+$end = new DateTime('1988-11-07');
+$statFetcher->getDownloadsBetweenDates('jquery', $start, $end);
+```
+
+### What it will return
+
+The methods will return `DownloadStatistics` objects. These are value objects that have values for the dates, download counts and package information.
